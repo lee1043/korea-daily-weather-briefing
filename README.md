@@ -1,10 +1,10 @@
 # AI Weather Intelligence Tools
 
 Small AI-powered utilities for **meteorological analysis and weather information synthesis**.
-
+All workflows are operated automatically via GitHub Actions.
 ---
 
-## 1. Worldwide Extreme Weather / Climate News
+## 1. Worldwide Extreme Weather / Climate News (search_news.py)
 
 Automatically searches for **major global weather and climate events** and generates a concise summary.
 
@@ -21,7 +21,7 @@ Automatically searches for **major global weather and climate events** and gener
 
 ---
 
-## 2. AI Weather Briefing Generator
+## 2. AI Weather Briefing Generator (daily_briefing.py)
 
 Generates an **automated synoptic weather briefing for the Korea Peninsula** using satellite imagery and NWP charts.
 
