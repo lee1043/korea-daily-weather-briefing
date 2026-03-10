@@ -1,7 +1,8 @@
 # AI Weather Intelligence Tools
 
 Small AI-powered utilities for **meteorological analysis and weather information synthesis**.
-All workflows are operated automatically via GitHub Actions.
+All workflows are operated automatically via GitHub Actions.  
+
 ---
 
 ## 1. Worldwide Extreme Weather / Climate News (search_news.py)
