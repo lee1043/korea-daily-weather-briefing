@@ -17,13 +17,12 @@ from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
-# For Korean text you will need a CJK-capable font (see comment below)
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib import colors
 import unicodedata
 
-# ====== 환경설정 ======
+# ====== Environment Configuration ======
 load_dotenv()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 DISCORD_NEWS_WEBHOOK_URL = os.getenv("DISCORD_NEWS_WEBHOOK_URL")
@@ -36,7 +35,7 @@ pdfmetrics.registerFont(TTFont(EMOJI_FONT_NAME, "NotoEmoji.ttf"))
 
 KST = pytz.timezone("Asia/Seoul")
 
-# ----- 1) 오늘 00UTC 기준 날짜 문자열 생성 -----
+# ----- Generate date strings based on today's 00 UTC -----
 def get_base_time_strings():
     now_kst = datetime.now(KST)
     base_utc = datetime(
