@@ -88,10 +88,15 @@ HAS_KOREAN_FONT = register_korean_font()
 
 
 def get_base_time_strings():
-    """
-    오늘 (KST 기준) 날짜를 가져와서 같은 날짜의 00 UTC를 기준 시각으로 사용.
-    예: 2026-01-16 KST → base_utc = 2026-01-16 00:00 UTC
-    """
+	"""
+	Determine the base analysis time.
+
+	The function uses the current date in KST and sets the base time
+	to 00 UTC of the same calendar date.
+
+	Example:
+		2026-01-16 KST → base_utc = 2026-01-16 00:00 UTC
+	"""
     now_kst = datetime.now(KST)
     base_utc = datetime(
         year=now_kst.year,
@@ -105,12 +110,19 @@ def get_base_time_strings():
 
 
 def build_kma_urls(ymd, hhh):
-    """
-    KMA 이미지 URL 구성 (WV + Surface/500/850 0,12,24,36,48h)
-    """
+	"""
+	Construct KMA image URLs.
+
+	Includes:
+	- Satellite WV imagery
+	- Surface analysis charts
+	- 500 hPa geopotential height charts
+	- 850 hPa wind charts
+
+	Forecast steps: 0h, 12h, 24h, 36h, 48h.
+	"""
     base_time = f"{ymd}{hhh}"  # e.g., 2026011600
 
-    # WV (위성)
     wv_url = (
         "https://www.weather.go.kr/w/repositary/image/sat/gk2a/EA/"
         f"gk2a_ami_le1b_wv063_ea020lc_{base_time}00.thn.png"
@@ -145,11 +157,13 @@ def build_kma_urls(ymd, hhh):
 
 
 def fetch_image(url, timeout=120):
-    """
-    실제 PDF에 삽입할 이미지를 다운로드 (BytesIO).
-    OpenAI 모델에는 base64 data URL로 넘길 것이므로,
-    여기서 한 번만 다운로드하면 됨.
-    """
+	"""
+	Download the image that will be embedded in the PDF.
+
+	The image is returned as a BytesIO object. The same data will also be
+	converted into a base64 data URL and sent to the OpenAI model,
+	so the image only needs to be downloaded once.
+	"""
     try:
         resp = requests.get(url, timeout=timeout)
         if resp.status_code == 200:
@@ -163,11 +177,13 @@ def fetch_image(url, timeout=120):
 
 
 def bytesio_to_data_url(img_io, mime="image/png"):
-    """
-    BytesIO → data:image/png;base64,... 형식의 data URL로 변환.
-    OpenAI 서버에서 외부 URL을 가져올 필요 없게 해서
-    KMA 타임아웃 문제를 회피.
-    """
+	"""
+	Convert a BytesIO image into a base64 data URL
+	(data:image/png;base64,...).
+
+	This avoids requiring the OpenAI server to fetch external URLs,
+	which helps prevent timeouts when accessing KMA image servers.
+	"""
     if img_io is None:
         return None
     img_io.seek(0)
