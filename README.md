@@ -20,7 +20,8 @@ Automatically searches for **major global weather and climate events** and gener
 - Climate monitoring
 - Daily extreme weather digest
 
-![discord1](discord1.png)![discord2](discord2.png)![discord3](discord3.png)
+![discord](discord.png)
+
 ---
 
 ## 2. AI Weather Briefing Generator (daily_briefing.py)
@@ -42,3 +43,5 @@ Generates an **automated synoptic weather briefing for the Korea Peninsula** usi
   - Forecast uncertainty
 - Produces a **PDF briefing report**
 - Optional **Discord delivery**
+
+![sample](sample.png)
