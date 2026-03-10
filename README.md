@@ -20,6 +20,7 @@ Automatically searches for **major global weather and climate events** and gener
 - Climate monitoring
 - Daily extreme weather digest
 
+![discord1](discord1.png)![discord2](discord2.png)![discord3](discord3.png)
 ---
 
 ## 2. AI Weather Briefing Generator (daily_briefing.py)
